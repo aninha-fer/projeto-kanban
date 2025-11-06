@@ -3,12 +3,10 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 
 export default function App() {
-  function quandoInicia() {
+  useEffect(() => {
     fetch('https://pacaro-tarefas.netlify.app/api/ana-ferreira/tasks');
     console.log('eai');
-  }
-
-  useEffect(quandoInicia, []);
+  }, [])
 
   return (
     <div>
