@@ -1,17 +1,37 @@
+import { useState } from "react";
 import Coluna from "../components/Coluna";
 import Header from "../components/Header";
 
-export default function Home() {
+type Tarefa = {
+  id: number;
+  title: string;
+  description: string;
+  step: string;
+}
+
+type HomeProps = {
+  itens: Tarefa[]; 
+}
+
+export default function Home(props : HomeProps) {
+    const categoria1 = "Para fazer";
+    const categoria2 = "Em andamento";
+    const categoria3 = "Pronto";
+    const tarefasParaFazer = props.itens.filter(item => item.step === categoria1);
+    const tarefasEmAndamento = props.itens.filter(item => item.step === categoria2);
+    const tarefasPronto = props.itens.filter(item => item.step === categoria3);
+
     return (
         <div>
             <Header/>
             <div className="flex justify-center">
-                <Coluna categoria={"Para fazer"} corFundo={"bg-red-100"} corCirculo={"bg-red-200"} corTitulo={"text-red-800"}/>
+                <Coluna step={categoria1} corFundo={"bg-red-100"} corCirculo={"bg-red-200"} corTitulo={"text-red-800"} cards={tarefasParaFazer}/>
 
-                <Coluna categoria={"Em andamento"} corFundo={"bg-yellow-100"}  corCirculo={"bg-yellow-200"} corTitulo={"text-yellow-800"}/>
+                <Coluna step={categoria2} corFundo={"bg-yellow-100"}  corCirculo={"bg-yellow-200"} corTitulo={"text-yellow-800"} cards={tarefasEmAndamento}/>
 
-                <Coluna categoria={"Pronto"} corFundo={"bg-green-100"} corCirculo={"bg-green-200"} corTitulo={"text-green-800"}/>
+                <Coluna step={categoria3} corFundo={"bg-green-100"} corCirculo={"bg-green-200"} corTitulo={"text-green-800"} cards={tarefasPronto}/>
             </div>
+           
         </div>
     );
 }
