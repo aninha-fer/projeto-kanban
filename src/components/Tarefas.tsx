@@ -8,7 +8,7 @@ export default function Tarefas(props:TarefasProps) {
     
     return (
         // <a onClick={}>
-            <div id="box" className="border-1 border-gray-100 shadow-md w-70 mb-2 rounded-md p-2">
+            <div id="box" className="border-1 bg-white rounded-md shadow p-3 mb-3 w-full sm:max-w-xs sm:w-auto">
                 <p>#{props.id}</p>
                 <p>{props.titulo}</p>
                 <p>{props.descricao}</p>

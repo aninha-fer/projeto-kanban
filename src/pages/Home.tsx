@@ -24,12 +24,14 @@ export default function Home(props : HomeProps) {
     return (
         <div>
             <Header/>
-            <div className="flex justify-center">
-                <Coluna step={categoria1} corFundo={"bg-red-100"} corCirculo={"bg-red-200"} corTitulo={"text-red-800"} cards={tarefasParaFazer}/>
-
-                <Coluna step={categoria2} corFundo={"bg-yellow-100"}  corCirculo={"bg-yellow-200"} corTitulo={"text-yellow-800"} cards={tarefasEmAndamento}/>
-
-                <Coluna step={categoria3} corFundo={"bg-green-100"} corCirculo={"bg-green-200"} corTitulo={"text-green-800"} cards={tarefasPronto}/>
+            <div className="px-4">
+              <div className="max-w-6xl mx-auto">
+                <div className="flex overflow-x-auto gap-4 justify-start sm:justify-center">
+                    <Coluna step={categoria1} corFundo={"bg-red-100"} corCirculo={"bg-red-200"} corTitulo={"text-red-800"} cards={tarefasParaFazer}/>
+                    <Coluna step={categoria2} corFundo={"bg-yellow-100"}  corCirculo={"bg-yellow-200"} corTitulo={"text-yellow-800"} cards={tarefasEmAndamento}/>
+                    <Coluna step={categoria3} corFundo={"bg-green-100"} corCirculo={"bg-green-200"} corTitulo={"text-green-800"} cards={tarefasPronto}/>
+                </div>
+              </div>
             </div>
            
         </div>
