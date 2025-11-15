@@ -9,12 +9,8 @@ type Tarefa = {
   step: string;
 }
 
-type HomeProps = {
-  itens: Tarefa[]; 
-}
-
-export default function Home(props : HomeProps) {
-  const [tasks, setTasks] = useState([]);
+export default function Home() {
+  const [tasks, setTasks] = useState<Tarefa[]>([]);
 
   async function carregaTarefas() {
     const resposta = await fetch(
@@ -31,9 +27,9 @@ export default function Home(props : HomeProps) {
   const categoria1 = "Para fazer";
   const categoria2 = "Em andamento";
   const categoria3 = "Pronto";
-  const tarefasParaFazer = tasks.filter(item => item.step === categoria1);
-  const tarefasEmAndamento = tasks.filter(item => item.step === categoria2);
-  const tarefasPronto = tasks.filter(item => item.step === categoria3);
+  const tarefasParaFazer = tasks.filter(task => task.step === categoria1);
+  const tarefasEmAndamento = tasks.filter(task => task.step === categoria2);
+  const tarefasPronto = tasks.filter(task => task.step === categoria3);
 
   return (
           <div>
@@ -47,7 +43,6 @@ export default function Home(props : HomeProps) {
                 </div>
               </div>
             </div>
-           
         </div>
     );
 }
