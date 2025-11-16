@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Coluna from "../components/Coluna";
 import Header from "../components/Header";
 
@@ -9,20 +9,30 @@ type Tarefa = {
   step: string;
 }
 
-type HomeProps = {
-  itens: Tarefa[]; 
-}
+export default function Home() {
+  const [tasks, setTasks] = useState<Tarefa[]>([]);
 
-export default function Home(props : HomeProps) {
-    const categoria1 = "Para fazer";
-    const categoria2 = "Em andamento";
-    const categoria3 = "Pronto";
-    const tarefasParaFazer = props.itens.filter(item => item.step === categoria1);
-    const tarefasEmAndamento = props.itens.filter(item => item.step === categoria2);
-    const tarefasPronto = props.itens.filter(item => item.step === categoria3);
+  async function carregaTarefas() {
+    const resposta = await fetch(
+      "https://pacaro-tarefas.netlify.app/api/ana-ferreira/tasks"
+    );
+    const tarefas = await resposta.json();
+    setTasks(tarefas);
+  }
 
-    return (
-        <div>
+  useEffect(() => {
+    carregaTarefas();
+  }, []);
+
+  const categoria1 = "Para fazer";
+  const categoria2 = "Em andamento";
+  const categoria3 = "Pronto";
+  const tarefasParaFazer = tasks.filter(task => task.step === categoria1);
+  const tarefasEmAndamento = tasks.filter(task => task.step === categoria2);
+  const tarefasPronto = tasks.filter(task => task.step === categoria3);
+
+  return (
+          <div className="bg-gray-100">
             <Header/>
             <div className="px-4">
               <div className="max-w-6xl mx-auto">
@@ -33,7 +43,6 @@ export default function Home(props : HomeProps) {
                 </div>
               </div>
             </div>
-           
         </div>
     );
 }
