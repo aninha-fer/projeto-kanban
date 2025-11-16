@@ -32,7 +32,7 @@ export default function Home() {
   const tarefasPronto = tasks.filter(task => task.step === categoria3);
 
   return (
-          <div>
+          <div className="bg-gray-100">
             <Header/>
             <div className="px-4">
               <div className="max-w-6xl mx-auto">

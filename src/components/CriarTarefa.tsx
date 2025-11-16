@@ -8,7 +8,6 @@ import {
     DialogTitle,
     DialogTrigger,
   } from "./ui/dialog"
-import Input from "./Input";
 
 export default function CriarTarefa() {
     const options: DropdownOption[] = [
@@ -64,6 +63,7 @@ export default function CriarTarefa() {
             setTitle("");
             setDescription("");
             setSelectedItem(null);
+            window.location.reload();
         } catch (err) {
             setError("Erro ao criar tarefa");
             console.log(err);
@@ -71,8 +71,6 @@ export default function CriarTarefa() {
             setLoading(false);
         }
     }
-
-    const currentLabel = options.find(opt => opt.value === selectedItem)?.label || 'Nenhuma opção selecionada';
     return (
         <div>
             <Dialog>
