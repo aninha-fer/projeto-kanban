@@ -74,7 +74,7 @@ export default function CriarTarefa() {
     return (
         <div>
             <Dialog>
-            <DialogTrigger>Nova Tarefa</DialogTrigger>
+            <DialogTrigger className="bg-orange-300 p-2 rounded-md text-white text-base hover:border">Nova Tarefa</DialogTrigger>
             <DialogContent className="bg-gray-300">
                 <DialogHeader>
                     <DialogTitle>Criar Tarefa</DialogTitle>
@@ -90,14 +90,14 @@ export default function CriarTarefa() {
                         placeholder="Status"
                     />
                     <label>Título</label>
-                    <input value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Escreva o título da tarefa" className="bg-white border-2 border-gray-300 rounded-md p-2 w-full"/>
+                    <input value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Escreva o título da tarefa" className="bg-white rounded-md p-2 w-full"/>
                     <label >Descrição</label>
-                    <textarea value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Descreva a tarefa" className="bg-white border-2 border-gray-300 rounded-md p-2 w-full"/>
+                    <textarea value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Descreva a tarefa" className="bg-white rounded-md p-2 w-full"/>
                     
                     {error && <p className="text-red-600 text-sm">{error}</p>}
                     {success && <p className="text-green-600 text-sm">Tarefa criada com sucesso.</p>}
 
-                    <button type="submit" disabled={loading} className="bg-blue-600 border-2 border-gray-300 rounded-md p-2 w-full disabled:opacity-50">
+                    <button type="submit" disabled={loading} className="bg-orange-300 rounded-md p-2 w-full disabled:opacity-50 hover:bg-orange-400">
                         {loading ? "Criando..." : "Criar Tarefa"}
                     </button>
                 </form>
