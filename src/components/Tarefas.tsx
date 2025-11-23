@@ -1,4 +1,4 @@
-import { Dialog, DialogContent, DialogTrigger } from "@radix-ui/react-dialog";
+import { Dialog, DialogTrigger } from "@radix-ui/react-dialog";
 import EditarTarefa from "./EditarTarefa";
 import { useEffect, useState } from "react";
 
