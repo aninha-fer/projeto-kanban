@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Dropdown, { type DropdownOption } from "./Dropdown"
 import {
     DialogContent,
-    DialogDescription,
     DialogHeader,
     DialogTitle
   } from "./ui/dialog"
