@@ -111,9 +111,7 @@ export default function EditarTarefa(props : EditarTarefaProps) {
         <DialogContent className="bg-gray-300">
             <DialogHeader>
                 <DialogTitle>Tarefa #{props.id}</DialogTitle>
-                    <DialogDescription>
-                        Adicione uma tarefa ao quadro.
-                    </DialogDescription>
+        
             </DialogHeader>
             <form onSubmit={handleSubmit} className="grid gap-3">
                 <Dropdown
@@ -123,19 +121,19 @@ export default function EditarTarefa(props : EditarTarefaProps) {
                     placeholder="Status"
                 />
                 <label>Título</label>
-                <input value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Escreva o título da tarefa" className="bg-white border-2 border-gray-300 rounded-md p-2 w-full"/>
+                <input value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Escreva o título da tarefa" className="bg-white border-2 rounded-md p-2 w-full"/>
                 <label >Descrição</label>
-                <textarea value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Descreva a tarefa" className="bg-white border-2 border-gray-300 rounded-md p-2 w-full"/>
+                <textarea value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Descreva a tarefa" className="bg-white border-2 rounded-md p-2 w-full"/>
                    
                 {error && <p className="text-red-600 text-sm">{error}</p>}
                 {success && <p  className="text-green-600 text-sm">Tarefa atualizada com sucesso.</p>}
 
-                <div>
-                    <button onClick={handleDelete} className="bg-red-600 border-2 border-gray-300 rounded-md p-2 w-40 disabled:opacity-50">
-                        {loading ? "Excluindo..." : "Excluir"}
+                <div className="flex justify-between items-center">
+                    <button onClick={handleDelete}>
+                        <svg className="h-6 w-6 text-gray-500 hover:text-black"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <polyline points="3 6 5 6 21 6" />  <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />  <line x1="10" y1="11" x2="10" y2="17" />  <line x1="14" y1="11" x2="14" y2="17" /></svg>
                     </button>
 
-                    <button type="submit" disabled={loading} className="bg-blue-600 border-2 border-gray-300 rounded-md p-2 w-40 disabled:opacity-50">
+                    <button type="submit" disabled={loading} className="bg-orange-300 border-2 border-gray-300 rounded-md p-2 w-40 disabled:opacity-50 hover:bg-orange-400">
                         {loading ? "Atualizando..." : "Atualizar Tarefa"}
                     </button>
                 </div>

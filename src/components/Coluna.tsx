@@ -13,17 +13,27 @@ type ColunaProps= {
     corCirculo: string;
     corTitulo: string;
     cards: Tarefa[];
+    img: string;
+    onUpdateTask?: (id:number, changes: Partial<Tarefa>) => void;
 }
 
 export default function Coluna(props: ColunaProps) {
     const listaTasks = props.cards.map((task) => {
-        return <Tarefas id={task.id} titulo={task.title} descricao={task.description} status={task.step}/>;
+        return <Tarefas 
+        id={task.id} 
+        titulo={task.title} 
+        descricao={task.description} 
+        status={task.step} 
+        onUpdate={props.onUpdateTask}/>;
     });
 
     return (
         <div className="bg-white flex-shrink-0 flex flex-col items-center mx-2 sm:mx-5 my-4 rounded-md w-full sm:w-80 max-w-full border-1 border-gray-200 min-h-screen sm:min-h-[30rem]">
             <div className={`${props.corFundo} ${props.corTitulo} w-full h-10 font-bold p-1 rounded-t-md mb-3 flex items-center justify-between`}>
-                <p>{props.step}</p>
+                <div className="flex items-center gap-1 ">
+                    <img src={props.img} className="h-3"/>
+                    <p>{props.step}</p>
+                </div>
                 <div className={`${props.corCirculo} flex justify-center items-center rounded-full h-7 w-7`}>
                     <p>{props.cards.length}</p>
                 </div>

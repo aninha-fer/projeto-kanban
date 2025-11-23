@@ -7,6 +7,7 @@ type TarefasProps= {
     titulo: string;
     descricao: string;
     status: string;
+    onUpdate?: (id:number, changes: Partial<{ step:string; title:string; description:string }>) => void;
 }
 
 export default function Tarefas(props:TarefasProps) {
@@ -16,11 +17,9 @@ export default function Tarefas(props:TarefasProps) {
     }, [props.status]);
 
     async function updateStep(newStep: string) {
-        const payload = {
-            title: props.titulo,
-            description: props.descricao,
-            step: newStep
-        };
+        const payload = { title: props.titulo, description: props.descricao, step: newStep };
+
+        props.onUpdate?.(props.id, { step: newStep });
 
         try {
             const res = await fetch(`https://pacaro-tarefas.netlify.app/api/ana-ferreira/tasks/${props.id}`, {
@@ -34,10 +33,9 @@ export default function Tarefas(props:TarefasProps) {
                 throw new Error(text || "Erro ao atualizar tarefa");
             }
 
-            setStepValue(newStep);
-            window.location.reload();
         } catch (err) {
-            console.log(err);
+            console.error(err);
+            props.onUpdate?.(props.id, { step: props.status });
         }
     }
 
@@ -75,7 +73,7 @@ export default function Tarefas(props:TarefasProps) {
                                 if (ns !== stepValue) await updateStep(ns);
                             }}
                         >
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-4 hover:bg-gray-200 rounded-md">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
                             </svg>
                         </button>
@@ -89,7 +87,7 @@ export default function Tarefas(props:TarefasProps) {
                                 if (ns !== stepValue) await updateStep(ns);
                             }}
                         >
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-4 hover:bg-gray-200 rounded-md ">
                             <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
                             </svg>
                         </button>
