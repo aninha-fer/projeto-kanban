@@ -1,11 +1,5 @@
 import Tarefas from "./Tarefas";
-
-type Tarefa = {
-  id: number;
-  title: string;
-  description: string;
-  step: string;
-}
+import type { Tarefa } from "../types";
 
 type ColunaProps= {
     step: string;
